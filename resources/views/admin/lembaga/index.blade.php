@@ -13,11 +13,11 @@
                 <h4 class="card-header text-center">Data Lembaga</h4>
                 <div class="flex flex-md-row">
                     <a href="/lembaga/create" class="btn btn-sm btn-primary" style="width: 120px;"><i
-                            class="fas fa-arrow-down"></i> insert</a>
+                            class="fas fa-arrow-down"></i> Add Data</a>
                     {{-- <a href="/lembaga/exportExcelLembaga/" class="btn btn-sm btn-primary" style="width: 120px;"><i
                             class="fas fa-arrow-down"></i> --}}
                     <a href="{{ route('exportExcelLembaga') }}" class="btn btn-sm btn-primary" style="width: 120px;"><i
-                            class="fas fa-arrow-down"></i> export</a>
+                            class="fas fa-arrow-down"></i> Export All</a>
 
                 </div>
                 <form action="{{ route('lembagas.search') }}" method="get"

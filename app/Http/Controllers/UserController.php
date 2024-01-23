@@ -12,11 +12,13 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     { {
             $users = User::paginate(10); // 10 items per page
+            $keyword = $request->input('keyword');
 
-            return view('admin.user.index', compact('users'));
+
+            return view('admin.user.index', compact('users', 'keyword'));
         }
     }
 
@@ -90,12 +92,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'role' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ], [
             'name.required' => 'kolom nama harus diisi',
             'email.required' => 'kolom email harus diisi',
             'role.required' => 'kolom role  harus diisi',
-            'password.required' => 'kolom password harus diisi',
+            // 'password.required' => 'kolom password harus diisi',
 
         ]);
 

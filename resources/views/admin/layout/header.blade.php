@@ -35,10 +35,31 @@
                                 <div class="main-header-profile header-img bg-primary rounded-top-5 p-3">
                                     <h6>{{ auth()->user()->nama }}</h6><span>{{ auth()->user()->role }}</span>
                                 </div>
-                                <a class="dropdown-item" href="/logout"><i class="fe fe-log-out"></i> Logout</a>
+                                {{-- <a class="dropdown-item" href="logout"><i class="fe fe-log-out"></i> Logout</a> --}}
+                                <div class="dropdown-item">
+                                    <form method="POST" action="{{ route('logout') }}" 
+                                        class="fe fe-log-out">
+                                        @csrf
+                                        <x-dropdown-link :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </div>
                             </div>
+
+                            {{-- <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form> --}}
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

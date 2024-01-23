@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\SiswaExport;
+// use App\Exports\SiswaExportTest;
 use App\Models\Lembaga;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class SiswaController extends Controller
     public function index(Request $request)
     { {
 
-            $siswas = Siswa::paginate(10); // 10 items per page
+            $siswas = Siswa::paginate(5); // 10 items per page
             // $keyword = Siswa::paginate(10); // 10 items per page
             $keyword = $request->input('keyword');
 
@@ -167,22 +168,22 @@ class SiswaController extends Controller
         return view('admin.siswa.index', compact('siswas', 'keyword'));
     }
 
-    // public function SSSS(Request $request)
-    // {
-    //     $search = $request->input('search');
-
-    //     $products = Siswa::when($search, function ($query) use ($search) {
-    //         $query->where('name', 'like', '%' . $search . '%');
-    //     })->get();
-
-    //     return view('products.index', compact('products', 'search'));
-    // }
-
-    public function exportExcelSiswa()
+    public function exportExcelSiswa(Request $request)
     {
-        // $keyword = $request->input('keyword');
-        // return Excel::download(new SiswaExport($keyword), 'siswa.xlsx');
+        $keyword = $request->get('keyword');
 
-        return Excel::download(new SiswaExport, 'siswa.xlsx');
+        $query = Siswa::query();
+
+        if ($keyword) {
+            $query->where('nama_siswa', 'like', "%$keyword%")
+            ->orWhere('nis', 'like', "%$keyword%")
+            ->orWhereHas('lembaga', function ($query) use ($keyword) {
+                $query->where('nama_lembaga', 'like', "%$keyword%");
+            });
+        }
+
+        $siswa = $query->get();
+
+        return Excel::download(new SiswaExport($siswa), 'siswa.xlsx');
     }
 }

@@ -12,10 +12,10 @@
             <div class="card">
                 <h4 class="card-header text-center">Data User</h4>
                 <a href="/useradm/create" class="btn btn-sm btn-primary" style="width: 120px;"><i
-                        class="fas fa-arrow-down"></i> insert</a>
+                        class="fas fa-arrow-down"></i> Add Data</a>
 
                 <!-- Add the search form -->
-                <form action="{{ route('useradm.search') }}" method="get"
+                {{-- <form action="{{ route('useradm.search') }}" method="get"
                     class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-4 px-4">
                     <div class="input-group">
                         <input type="text" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}"
@@ -24,7 +24,7 @@
                             <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
 
                 <div class="card-body">
                     <div class="table-responsive">

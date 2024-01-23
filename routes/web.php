@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     // Export Excel
     Route::get('exportExcelSiswa', [SiswaController::class, 'exportExcelSiswa'])->name('exportExcelSiswa');
     Route::get('exportExcelLembaga', [LembagaController::class, 'exportExcelLembaga'])->name('exportExcelLembaga');
+    Route::get('myprofile', [DashboardController::class, 'myprofile'])->name('myprofile');
 });
 
 

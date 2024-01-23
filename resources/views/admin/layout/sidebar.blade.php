@@ -4,8 +4,8 @@
         <div class="app-sidebar__user">
             <div class="dropdown user-pro-body text-center">
                 <div class="user-pic">
-                    <img src="{{ asset('assets3/img/users/rental.jpg') }}" alt="user-img"
-                        class="rounded-circle mCS_img_loaded" style="margin-top: 30px">
+                    <img src="{{ asset('assets/images/media/iconeducation.png') }}" alt="img"
+                        class="img-fluid" style="margin-top: 30px" width="100">
                 </div>
             </div>
         </div>
@@ -41,6 +41,13 @@
                             class="side-menu__icon mdi mdi-account-settings-variant"></i><span
                             class="side-menu__label">Data
                             User</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ Request::is('/myprofile') ? 'active' : '' }}" href="{{ url('/myprofile') }}"
+                        data-bs-toggle="slide" href="javascript:void(0);"><i
+                            class="side-menu__icon mdi mdi-account-settings-variant"></i><span
+                            class="side-menu__label">My
+                            Profile</span></a>
                 </li>
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

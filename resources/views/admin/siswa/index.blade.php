@@ -12,15 +12,14 @@
             <div class="card">
                 <h4 class="card-header text-center">Data Siswa</h4>
                 <div class="flex flex-md-row">
-                    <a href="/siswa/create" class="btn btn-sm btn-primary" style="width: 120px;"><i
-                            class="fas fa-arrow-down"></i>
-                        insert</a>
-                    {{-- <a href="/siswa/exportExcel/?keyword={{ $keyword }}" class="btn btn-sm btn-primary"
-                        style="width: 120px;"><i class="fas fa-arrow-down"></i>
-                        export</a> --}}
-                    <a href="{{ route('exportExcelSiswa') }}" class="btn btn-sm btn-primary" style="width: 120px;"><i
-                            class="fas fa-arrow-down"></i>export</a>
-                    {{-- <a href="/products/export-excel?search={{ $search }}">Export to Excel</a> --}}
+                    <a href="/siswa/create" class="btn btn-sm btn-primary" style="width: 120px;">
+                        <i class="fas fa-arrow-down"></i> Add Data</a>
+                    <a href="{{ route('exportExcelSiswa') }}" class="btn btn-sm btn-primary" style="width: 120px;">
+                        <i class="fas fa-arrow-down"></i> Export All Data</a>
+                    @if($siswas->isNotEmpty())
+                    <a href="{{ url('/exportExcelSiswa') }}?keyword={{ request('keyword') }}" class="btn btn-sm btn-primary" style="width: 120px;">
+                        <i class="fas fa-arrow-down"></i> Export Search</a>
+                @endif
                 </div>
 
                 <form action="{{ route('siswas.search') }}" method="get"
@@ -33,6 +32,12 @@
                         </div>
                     </div>
                 </form>
+
+                {{-- <form action="{{ url('/exportExcelSiswa') }}" method="get">
+                    <label for="keyword">Cari:</label>
+                    <input type="text" name="keyword" id="keyword" value="{{ request('keyword') }}">
+                    <button type="submit">Export</button>
+                </form> --}}
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -59,11 +64,11 @@
                                         <td class="table-cell">{{ $siswa->lembaga->nama_lembaga }}</td>
                                         <td class="table-cell">
                                             @if ($siswa->file)
-                                                <img src="{{ asset('storage/siswa/' . $siswa->file) }}" alt="mobil"
+                                                <img src="{{ asset('storage/siswa/' . $siswa->file) }}" alt="jpg"
                                                     class="img-fluid" width="150">
                                             @else
-                                                <img src="{{ asset('images/foto-profile.png') }}" alt="mobil"
-                                                    class="img-fluid rounded-circle" width="80">
+                                                <img src="{{ asset('assets/images/media/noimage.jpg') }}" alt="jpg"
+                                                    class="img-fluid" width="100">
                                             @endif
                                         </td>
                                         <td class="text-center table-cell">
@@ -82,7 +87,6 @@
                                                 </form>
                                             </div>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -92,8 +96,8 @@
 
                 <!-- Use the correct variable for pagination -->
                 <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                    @if (isset($mobils) && $mobils instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                        {{ $mobils->links('pagination::bootstrap-5') }}
+                    @if (isset($siswas) && $siswas instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                        {{ $siswas->links('pagination::bootstrap-5') }}
                     @endif
                 </div>
             </div>
